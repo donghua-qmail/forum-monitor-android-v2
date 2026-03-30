@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="论坛监控配置"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp" />
+
+        <!-- 监控用户 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="监控用户（多个用户用逗号分隔）"
+            android:paddingTop="8dp" />
+        <EditText
+            android:id="@+id/etUsers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="例如：君子先修心, 君子先修心2"
+            android:inputType="text" />
+
+        <!-- 检查间隔 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="检查间隔（秒，建议≥60）"
+            android:paddingTop="8dp" />
+        <EditText
+            android:id="@+id/etInterval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="例如：300"
+            android:inputType="number" />
+
+        <!-- Server酱Key -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Server酱Key（微信通知）"
+            android:paddingTop="8dp" />
+        <EditText
+            android:id="@+id/etServerChanKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="SCTxxx"
+            android:inputType="text" />
+
+        <!-- 邮件配置 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="QQ邮箱账号"
+            android:paddingTop="8dp" />
+        <EditText
+            android:id="@+id/etEmailAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="xxx@qq.com"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="QQ邮箱授权码"
+            android:paddingTop="8dp" />
+        <EditText
+            android:id="@+id/etEmailAuth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="授权码"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="通知邮箱"
+            android:paddingTop="8dp" />
+        <EditText
+            android:id="@+id/etNotifyEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="接收通知的邮箱地址"
+            android:inputType="textEmailAddress" />
+
+        <!-- 按钮 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="16dp">
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="保存配置"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnOpenAccessibility"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="开启无障碍服务" />
+        </LinearLayout>
+
+        <!-- 开关 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="启动监控"
+                android:gravity="center_vertical" />
+
+            <Switch
+                android:id="@+id/swStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="停止监控"
+                android:gravity="center_vertical" />
+
+            <Switch
+                android:id="@+id/swStop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- 说明 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/usage_hint"
+            android:paddingTop="24dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeWindowStateChanged|typeWindowContentChanged|typeAllMask"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagDefault|flagReportViewIds|flagRequestTouchExplorationMode"
+    android:canRetrieveWindowContent="true"
+    android:notificationTimeout="100"
+    android:description="监控同花顺论坛用户发言"
+    android:packageNames="com.hexin.plat.android"
+    android:settingsActivity=".MainActivity" />

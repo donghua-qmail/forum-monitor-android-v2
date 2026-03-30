@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">论坛监控</string>
+
+    <string name="usage_hint">
+        使用说明：
+        1. 点击"开启无障碍服务"并找到"论坛监控"，开启服务
+        2. 配置监控用户、检查间隔、Server酱Key等信息
+        3. 打开同花顺APP，进入论坛页面
+        4. 点击"启动监控"开始运行
+        5. 监控时段：9:30-19:00（A股交易日）
+        \n\n注意：需要在同花顺APP登录账号，并保持在论坛页面
+    </string>
+</resources>
