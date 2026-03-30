@@ -24,17 +24,64 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: 配置 Gradle 国内镜像
+        run: |
+          mkdir -p ~/.gradle
+          cat > ~/.gradle/init.gradle <<'EOF'
+          allprojects {
+              repositories {
+                  def ALIYUN_REPOSITORY_URL = 'https://maven.aliyun.com/repository/public'
+                  def ALIYUN_JCENTER_URL = 'https://maven.aliyun.com/repository/jcenter'
+                  def ALIYUN_GOOGLE_URL = 'https://maven.aliyun.com/repository/google'
+                  def ALIYUN_GRADLE_PLUGIN_URL = 'https://maven.aliyun.com/repository/gradle-plugin'
+
+                  all { ArtifactRepository repo ->
+                      if (repo instanceof MavenArtifactRepository) {
+                          def url = repo.url.toString()
+                          if (url.startsWith('https://repo1.maven.org/maven2/')) {
+                              project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_REPOSITORY_URL."
+                              remove repo
+                          }
+                          else if (url.startsWith('https://jcenter.bintray.com/')) {
+                              project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_JCENTER_URL."
+                              remove repo
+                          }
+                          else if (url.startsWith('https://dl.google.com/dl/android/maven2/')) {
+                              project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GOOGLE_URL."
+                              remove repo
+                          }
+                          else if (url.startsWith('https://plugins.gradle.org/m2/')) {
+                              project.logger.lifecycle "Repository ${repo.url} replaced by $ALIYUN_GRADLE_PLUGIN_URL."
+                              remove repo
+                          }
+                      }
+                  }
+                  maven { url ALIYUN_REPOSITORY_URL }
+                  maven { url ALIYUN_JCENTER_URL }
+                  maven { url ALIYUN_GOOGLE_URL }
+                  maven { url ALIYUN_GRADLE_PLUGIN_URL }
+              }
+          }
+          EOF
+
       - name: 给 Gradle 添加执行权限
         run: chmod +x gradlew
+
+      - name: 配置网络超时
+        run: |
+          mkdir -p ~/.gradle
+          echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+          echo "org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError" >> ~/.gradle/gradle.properties
+          echo "org.gradle.workers.max=2" >> ~/.gradle/gradle.properties
 
       - name: 清理缓存
         run: ./gradlew clean
 
       - name: 编译 Debug APK
-        run: ./gradlew assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace --no-daemon
 
       - name: 编译 Release APK
-        run: ./gradlew assembleRelease --stacktrace
+        run: ./gradlew assembleRelease --stacktrace --no-daemon
 
       - name: 上传 Debug APK
         uses: actions/upload-artifact@v4
