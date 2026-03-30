@@ -1,11 +1,13 @@
 name: Build APK
 
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
     inputs:
       version:
         description: '版本号（如：1.0.0）'
-        required: true
+        required: false
         default: '1.0.0'
 
 jobs:
